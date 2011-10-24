@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" packagerversion="1.9.1" version="2.0" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+ <name>sfContactFormPlugin</name>
+ <channel>plugins.symfony-project.org</channel>
+ <summary>A basic contact form</summary>
+ <description>Just a basic plugin to make easy and fast a contact form.</description>
+ <lead>
+  <name>Gaspar Teixiera</name>
+  <user>gaspar</user>
+  <email>gaspar.teixeira@gmail.com</email>
+  <active>yes</active>
+ </lead>
+ <date>2010-08-17</date>
+ <time>15:08:19</time>
+ <version>
+  <release>1.0.6</release>
+  <api>1.0.6</api>
+ </version>
+ <stability>
+  <release>stable</release>
+  <api>stable</api>
+ </stability>
+ <license uri="http://www.symfony-project.com/license">MIT license</license>
+ <notes>
+-
+ </notes>
+ <contents>
+  <dir name="/">
+   <file md5sum="4b411a042b959ab1983296cdc144c798" name="web/css/contact.css" role="data"/>
+   <file md5sum="a292a43e06ff942a632fed6a1ad39f24" name="modules/contact/config/view.yml" role="data"/>
+   <file md5sum="050e4e28c3c8470ab87b25bca5bdc270" name="lib/form/ContactForm.class.php" role="data"/>
+   <file md5sum="dd03e00732782d6f18314f277d806908" name="modules/contact/actions/actions.class.php" role="data"/>
+   <file md5sum="d6192b0598db8d7a677c449f4a4b4432" name="modules/contact/templates/indexSuccess.php" role="data"/>
+   <file md5sum="d41d8cd98f00b204e9800998ecf8427e" name="modules/contact/templates/imageSuccess.php" role="data"/>
+   <file md5sum="579c6b90f6f759d86d7c6d08ee965344" name="modules/contact/templates/_send.php" role="data"/>
+   <file md5sum="e4bd14953db74e8b4a21c3ca48f98c42" name="modules/contact/lib/BaseContactActions.class.php" role="data"/>
+   <file md5sum="c229d596d48f0f1eea0baf6203f03e9c" name="modules/contact/lib/monofont.ttf" role="data"/>
+   <file md5sum="77f1b27ecaf7604bdf83773a4c4f0162" name="README" role="data"/>
+   <file md5sum="b88c1a54b3d4af29fb89bcab380fe285" name="LICENSE" role="data"/>
+  </dir>
+ </contents>
+ <dependencies>
+  <required>
+   <php>
+    <min>5.1.0</min>
+   </php>
+   <pearinstaller>
+    <min>1.4.1</min>
+   </pearinstaller>
+   
+  </required>
+ </dependencies>
+ <phprelease/>
+ <changelog>
+  <release>
+   <version>
+    <release>1.0.0</release>
+    <api>1.0.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2010-05-20</date>
+   <notes>
+* gaspar: First release of the plugin
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.1</release>
+    <api>1.0.1</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2010-05-21</date>
+   <notes>
+* gaspar: Fixed send and redirect problem
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.2</release>
+    <api>1.0.2</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2010-05-21</date>
+   <notes>
+* gaspar: Fixed message received
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.3</release>
+    <api>1.0.3</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2010-05-21</date>
+   <notes>
+* gaspar: Implemented the captcha security code image
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.4</release>
+    <api>1.0.4</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2010-08-16</date>
+   <notes>
+* gaspar: Made the link to test the plugin online
+   </notes>
+  </release>
+  <release>
+   <version>
+    <release>1.0.5</release>
+    <api>1.0.5</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license uri="http://www.symfony-project.com/license">MIT license</license>
+   <license>MIT</license>
+   <date>2010-08-17</date>
+   <notes>
+* gaspar: Upgrade the version to stable
+   </notes>
+  </release>
+ </changelog>
+</package>
