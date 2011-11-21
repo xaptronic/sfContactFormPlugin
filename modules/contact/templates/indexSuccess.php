@@ -7,11 +7,11 @@
 	<form action="<?php echo url_for('@contact') ?>" method="POST" enctype="multipart/form-data">
 	  <?php if($sf_user->hasFlash('error')): ?>
 	   <div id='error'><?php echo $sf_user->getFlash('error') ?></div>
-	  <?php endif; ?> 
+	  <?php endif; ?>
 
 	  <?php if($sf_user->hasFlash('notice')): ?>
 	   <div id='notice'><?php echo $sf_user->getFlash('notice') ?></div>
-	  <?php endif; ?> 
+	  <?php endif; ?>
 
 	  <table cellpadding="3">
 	    <tr>
@@ -41,29 +41,22 @@
 		<?php echo $form['message']->renderError() ?>
 		<?php echo $form['message'] ?>
 	      </td>
-	    </tr>	     
+	    </tr>
              <tr>
                 <th valign="top"><?php echo $form['captcha']->renderLabel(sfConfig::get('app_contact_form_field_captcha')) ?></th>
                 <td>
                  <?php echo $form['_csrf_token'] ?>
                  <?php echo $form['captcha'] ?><br/>
                  <small>* Type the secret code in field above</small><br />
-                  <?php echo image_tag(sfConfig::get('app_contact_form_image_path')) ?>           
-                  
+                 <?php echo image_tag(sfConfig::get('app_contact_form_image_path',url_for('@contact_captcha'))) ?>
+
                 <td>
 	     <tr>
                 <td>&nbsp;</td>
 		<td>
-		  <input type="submit" value="<?php echo sfConfig::get('app_contact_form_button')?>" />
+		  <input type="submit" value="<?php echo sfConfig::get('app_contact_form_button','Send')?>" />
            	</td>
 	     </tr>
 	  </table>
 	</form>
 </fieldset>
-
-
-
-
-
-
-
