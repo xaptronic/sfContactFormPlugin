@@ -1,48 +1,44 @@
-<?php 
+<?php
 
 class BaseContactActions extends sfActions
 {
+  public function executeIndex($request)
+  {
+    $this->form = new ContactForm();
 
 
-   public function executeIndex($request)
-   {
-      $this->form = new ContactForm();
+    if($request->isMethod('post'))
+    {
+      $this->form->bind($request->getParameter('contact'));
 
+      if($this->form->isValid())
+      {
+        if($this->form->getValue('captcha') == $this->getUser()->getAttribute('security_code') || !sfConfig::get('app_contact_form_require_captcha', true))
+        {
+          $message = Swift_Message::newInstance()
+            ->setFrom($this->form->getValue('email'))
+            ->setTo(sfConfig::get('app_contact_form_email'))
+            ->setSubject($this->form->getValue('subject'))
+            ->setBody($this->getPartial('send'), 'text/html');
 
-      if($request->isMethod('post')):
+          $this->getMailer()->send($message);
 
-          $this->form->bind($request->getParameter('contact'));
-        
-          if($this->form->isValid()):
-   
-             if($this->form->getValue('captcha') == $this->getUser()->getAttribute('security_code')):
-             $mensagem = Swift_Message::newInstance()
-		  ->setFrom($this->form->getValue('email'))
-                  ->setTo(sfConfig::get('app_contact_form_email'))
-		  ->setSubject($this->form->getValue('subject'))
-		  ->setBody($this->getPartial('send'), 'text/html');
- 
-             $this->getMailer()->send($mensagem);
+          $this->getUser()->setFlash('notice', sfConfig::get('app_contact_form_notice'));
+          $this->redirect('@contact');
+      }
+      else {
+        $this->getUser()->setFlash('error', sfConfig::get('app_contact_form_captcha'));
+      }
 
-             $this->getUser()->setFlash('notice', sfConfig::get('app_contact_form_notice'));
-             $this->redirect('@contact');
-             else:
-             $this->getUser()->setFlash('error', sfConfig::get('app_contact_form_captcha'));
-     
-             endif;
-
-          else:
-             $this->getUser()->setFlash('error', sfConfig::get('app_contact_form_error'));
-          endif;
-
-      endif;
-
-
-
-   }
+      else
+      {
+        $this->getUser()->setFlash('error', sfConfig::get('app_contact_form_error'));
+      }
+    }
+  }
 
    public function executeImage()
-   
+
    {
 
     $font = sfConfig::get('sf_plugins_dir').'/sfContactFormPlugin/modules/contact/lib/monofont.ttf';
@@ -54,10 +50,10 @@ class BaseContactActions extends sfActions
     $code = '';
     $i = 0;
 
-    while ($i < $characters) { 
+    while ($i < $characters) {
 	$code .= substr($possible, mt_rand(0, strlen($possible)-1), 1);
 	  $i++;
-        
+
     }
 
     $this->getUser()->setAttribute('security_code', $code);
@@ -71,7 +67,7 @@ class BaseContactActions extends sfActions
       for( $i=0; $i<($width*$height)/3; $i++ ) {
          imagefilledellipse($image, mt_rand(0,$width), mt_rand(0,$height), 1, 1, $noise_color);
       }
-		
+
       for( $i=0; $i<($width*$height)/150; $i++ ) {
 	imageline($image, mt_rand(0,$width), mt_rand(0,$height), mt_rand(0,$width), mt_rand(0,$height), $noise_color);
       }
@@ -84,6 +80,6 @@ class BaseContactActions extends sfActions
     header("Content-type:  image/jpeg");
     imagepng($image);
     imagedestroy($image);
-    
+
    }
 }

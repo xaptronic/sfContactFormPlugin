@@ -20,7 +20,7 @@ enable the plugin in project_name/config/ProjectConfiguration.class.php
 
 enable the plugin module in your project app like this frontend/config/settings.yml
 
-    [yml]        
+    [yml]
     all:
       .settings:
         enabled_modules:        [contact]
@@ -38,13 +38,13 @@ configure the addressee and messages in your project app in this way frontend/co
     all:
       contact_form:
         ## Put here your email address. This email will receive the message from contact form
-        email:         your_email@server.com         
+        email:         your_email@server.com
 
-        ## custom your error message            
-        error:        There is an error. Cannot be sent!  
+        ## custom your error message
+        error:        There is an error. Cannot be sent!
 
         ## custom your success message
-        notice:       Your message has been sent succefull 
+        notice:       Your message has been sent succefully
 
         ## captcha error message
         captcha:      Your secret code is incorrect
@@ -54,7 +54,7 @@ configure the addressee and messages in your project app in this way frontend/co
         image_path:   http://localhost/yourproject/web/index.php/contact/image
 
         ## legend your form
-        legend:       Please, fill the fields and send us a message  
+        legend:       Please, fill the fields and send us a message
 
         ## change fields labels
         field_name:     Your Name
@@ -63,6 +63,13 @@ configure the addressee and messages in your project app in this way frontend/co
         field_message:  Your Message
         field_captcha:  Security Code
         button:         Send Message
+
+        # specify whether to require the captcha
+        require_captcha: true
+
+        # set reply to (if sending through gmail the from / sender headers may be overridden in which case the reply-to header should be set)
+        set_reply_to: false
+
 
 clear the cache
 
