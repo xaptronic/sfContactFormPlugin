@@ -4,7 +4,7 @@
 <fieldset>
 
   <legend><?php echo $legend = (sfConfig::get('app_contact_form_legend'))?sfConfig::get('app_contact_form_legend'):'Contact Form'; ?></legend>
-	<form action="<?php echo url_for('@contact') ?>" method="POST" enctype="multipart/form-data">
+	<form action="<?php echo url_for('@sf_contact_form') ?>" method="POST" enctype="multipart/form-data">
 	  <?php if($sf_user->hasFlash('error')): ?>
 	   <div id='error'><?php echo $sf_user->getFlash('error') ?></div>
 	  <?php endif; ?>
@@ -48,7 +48,7 @@
                  <?php echo $form['_csrf_token'] ?>
                  <?php echo $form['captcha'] ?><br/>
                  <small>* Type the secret code in field above</small><br />
-                 <?php echo image_tag(sfConfig::get('app_contact_form_image_path',url_for('@contact_captcha'))) ?>
+                 <?php echo image_tag(url_for('@sf_contact_form_image')) ?>
 
                 <td>
 	     <tr>

@@ -6,7 +6,6 @@ class BaseContactActions extends sfActions
   {
     $this->form = new ContactForm();
 
-
     if($request->isMethod('post'))
     {
       $this->form->bind($request->getParameter('contact'));
@@ -30,11 +29,12 @@ class BaseContactActions extends sfActions
 
           $this->getUser()->setFlash('notice', sfConfig::get('app_contact_form_notice'));
           $this->redirect('@contact');
+        }
+        else
+        {
+          $this->getUser()->setFlash('error', sfConfig::get('app_contact_form_captcha'));
+        }
       }
-      else {
-        $this->getUser()->setFlash('error', sfConfig::get('app_contact_form_captcha'));
-      }
-
       else
       {
         $this->getUser()->setFlash('error', sfConfig::get('app_contact_form_error'));
@@ -42,10 +42,8 @@ class BaseContactActions extends sfActions
     }
   }
 
-   public function executeImage()
-
-   {
-
+  public function executeImage()
+  {
     $font = sfConfig::get('sf_plugins_dir').'/sfContactFormPlugin/modules/contact/lib/monofont.ttf';
     $width = 100;
     $height = 40;
@@ -55,10 +53,10 @@ class BaseContactActions extends sfActions
     $code = '';
     $i = 0;
 
-    while ($i < $characters) {
-	$code .= substr($possible, mt_rand(0, strlen($possible)-1), 1);
-	  $i++;
-
+    while ($i < $characters)
+    {
+	    $code .= substr($possible, mt_rand(0, strlen($possible)-1), 1);
+	    $i++;
     }
 
     $this->getUser()->setAttribute('security_code', $code);
@@ -69,22 +67,23 @@ class BaseContactActions extends sfActions
     $text_color = imagecolorallocate($image, 20, 40, 100);
     $noise_color = imagecolorallocate($image, 100, 180, 240);
 
-      for( $i=0; $i<($width*$height)/3; $i++ ) {
-         imagefilledellipse($image, mt_rand(0,$width), mt_rand(0,$height), 1, 1, $noise_color);
-      }
+    for( $i=0; $i<($width*$height)/3; $i++ )
+    {
+       imagefilledellipse($image, mt_rand(0,$width), mt_rand(0,$height), 1, 1, $noise_color);
+    }
 
-      for( $i=0; $i<($width*$height)/150; $i++ ) {
-	imageline($image, mt_rand(0,$width), mt_rand(0,$height), mt_rand(0,$width), mt_rand(0,$height), $noise_color);
-      }
+    for( $i=0; $i<($width*$height)/150; $i++ )
+    {
+      imageline($image, mt_rand(0,$width), mt_rand(0,$height), mt_rand(0,$width), mt_rand(0,$height), $noise_color);
+    }
 
-      $textbox = imagettfbbox($font_size, 0, $font, $code);
-      $x = ($width - $textbox[4])/2;
-      $y = ($height - $textbox[5])/2;
-      imagettftext($image, $font_size, 0, $x, $y, $text_color, $font , $code);
+    $textbox = imagettfbbox($font_size, 0, $font, $code);
+    $x = ($width - $textbox[4])/2;
+    $y = ($height - $textbox[5])/2;
+    imagettftext($image, $font_size, 0, $x, $y, $text_color, $font , $code);
 
     header("Content-type:  image/jpeg");
     imagepng($image);
     imagedestroy($image);
-
-   }
+  }
 }
