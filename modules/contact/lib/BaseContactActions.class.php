@@ -21,6 +21,11 @@ class BaseContactActions extends sfActions
             ->setSubject($this->form->getValue('subject'))
             ->setBody($this->getPartial('send'), 'text/html');
 
+          if (sfConfig::get('app_contact_form_set_reply_to', false))
+          {
+            $message->setReplyTo($this->form->getValue('email'));
+          }
+
           $this->getMailer()->send($message);
 
           $this->getUser()->setFlash('notice', sfConfig::get('app_contact_form_notice'));
